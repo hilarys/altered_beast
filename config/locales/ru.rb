@@ -271,7 +271,7 @@
       :recent_posts => "последние сообщения",
       :no_recent_activity => "В последнее время пользователь отсутствует",
       :show_recent_posts => "показать последние сообщения",
-      :search_results_for_searchterm => "\"Результат поиска для &raquo;{{searchterm}}&laquo;\"",
+      :search_results_for_searchterm => "Результаты поиска для &laquo;{{searchterm}}&raquo;",
       :goto_last_page => "Перейти на последнюю страницу",
 
       :new_topic => "Новая тема",
