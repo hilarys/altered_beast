@@ -7,10 +7,11 @@ class PostsController < ApplicationController
   # /forums/1/posts
   # /forums/1/topics/1/posts
   def index
-    @posts = (@parent ? @parent.posts : current_site.posts).search(params[:q], :page => current_page)
+    @posts = (@parent ? @parent.posts : current_site.posts).search(params[:q], params[:forum], :page => current_page)
     @users = @user ? {@user.id => @user} : User.index_from(@posts)
+    @forums = Forum.all
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :action => params[:q].blank? ? :index : :search } # index.html.erb
       format.atom # index.atom.builder
       format.xml  { render :xml  => @posts }
     end
