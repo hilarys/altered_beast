@@ -2,9 +2,9 @@ ActionController::Routing::Routes.draw do |map|
   map.open_id_complete '/session', 
     :controller => "sessions", :action => "create",
     :requirements => { :method => :get }
+  map.search '/search', :controller => 'search', :action => 'index'
 
   map.resources :sites, :moderatorships, :monitorship
-  
 
   map.resources :forums, :has_many => :posts do |forum|
     forum.resources :topics do |topic|
@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
     forum.resources :posts
   end
   
-  map.resources :posts, :collection => {:search => :get}
+  map.resources :posts
   map.resources :users, :member => { :suspend   => :put,
                                      :settings  => :get,
                                      :make_admin => :put,

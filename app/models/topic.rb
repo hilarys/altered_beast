@@ -23,6 +23,7 @@ class Topic < ActiveRecord::Base
 
   has_many :posts,       :order => "#{Post.table_name}.created_at", :dependent => :delete_all
   has_one  :recent_post, :order => "#{Post.table_name}.created_at DESC", :class_name => "Post"
+  has_many :replies,     :order => "#{Post.table_name}.created_at ASC", :class_name => "Post", :limit => "1, 10"
   
   has_many :voices, :through => :posts, :source => :user, :uniq => true
   
@@ -71,6 +72,25 @@ class Topic < ActiveRecord::Base
   
   def to_param
     permalink
+  end
+  
+  def self.search(query, forum_id, options = {})
+    options[:conditions] ||= ["(LOWER(#{Post.table_name}.body) LIKE ? OR LOWER(#{Topic.table_name}.title) LIKE ?) AND #{Topic.table_name}.forum_id = ?", "%#{query}%", "%#{query}%", forum_id] unless query.blank?
+    #options[:select]     ||= "#{Topic.table_name}.title AS topic_title, #{Topic.table_name}.id AS id, f.name AS forum_name, #{Topic.table_name}.forum_id AS f_id"
+    options[:joins]      ||= "INNER JOIN #{Post.table_name} ON #{Post.table_name}.topic_id = #{Topic.table_name}.id " + 
+                             "INNER JOIN #{Forum.table_name} AS f ON #{Topic.table_name}.forum_id = f.id"
+    #options[:order]      ||= "#{Post.table_name}.created_at DESC"
+    options[:group]      ||= "#{Topic.table_name}.id"
+    options[:count]      ||= {:select => "#{Topic.table_name}.id"}
+    paginate options
+  end
+  
+  def first_post
+    posts.find :first, :order => "created_at ASC"
+  end
+  
+  def has_replies?
+    posts.count > 1 ? true : false
   end
 
 protected

@@ -1,0 +1,41 @@
+<% @page_title = search_posts_title -%>
+
+<% unless params[:q].blank? %>
+  <h1><%= I18n.t 'txt.search_results_for_searchterm', :default => "Search results for '{{searchterm}}'", :searchterm => h(params[:q]) %></h1>
+<% else %>
+  <h1><%= I18n.t 'txt.search', :default => "Search" %></h1>
+<% end %>
+
+<% form_tag '/search' do -%>
+  <%= label_tag "forum" %>
+  <%= select_tag "forum", options_for_select(@forums.map {|f| [f.name, f.id]}, params[:forum].to_i) %>
+  <%= text_field_tag :q, params[:q], :size => 15, :id => :search_box %>
+  <%= submit_tag "Find" %>
+<% end -%>
+
+<% unless params[:q].blank? %>
+  <%= will_paginate @posts %>
+
+  <table border="0" cellspacing="0" cellpadding="0" class="posts wide">
+  <% for topic in @posts do %>
+    <tr>
+      <td>
+        <%= link_to h(topic.title), forum_topic_path(topic.forum, topic) %><br />
+        <%= truncate(topic.first_post.body, :length => 60) %>
+        <% if topic.has_replies? %>
+          <div style="padding-left: 20px">
+            <% for reply in topic.replies %>
+              <p>&gt;&gt;<%= truncate(reply.body, :length => 60) %></p>
+            <% end %>
+          </div>
+        <% end %>
+      </td>
+      <td><%= link_to h(topic.forum.name), forum_path(topic.forum) %></td>
+      <td><%= link_to truncate(h(topic.first_post.user.display_name), :length => 15), user_path(topic.first_post.user) %></td>
+      <td><%= topic.created_at %></td>
+    </tr>
+  <% end %>
+  </table>
+
+  <%= will_paginate @posts %>
+<% end %>

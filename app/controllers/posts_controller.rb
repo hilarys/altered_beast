@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     @users = @user ? {@user.id => @user} : User.index_from(@posts)
     @forums = Forum.all
     respond_to do |format|
-      format.html { render :action => params[:q].blank? ? :index : :search } # index.html.erb
+      format.html # index.html.erb
       format.atom # index.atom.builder
       format.xml  { render :xml  => @posts }
     end
