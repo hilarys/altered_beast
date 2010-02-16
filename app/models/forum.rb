@@ -2,6 +2,7 @@ class Forum < ActiveRecord::Base
   formats_attributes :description
   
   acts_as_list
+  acts_as_tree :order => 'name'
 
   validates_presence_of :name
   
