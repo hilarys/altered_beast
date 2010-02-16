@@ -1,0 +1,12 @@
+The following post has been reported as inappropriate:
+
+  http://tripfriends.ru<%= forum_topic_path(@post.topic.forum, @post.topic) %>
+  
+Reported content:
+
+  <%= @post.body %>
+  
+Reported by <%= @user.login %> at <%= Time.now %>. Visitor details:
+
+  User agent: <%= @request.env['HTTP_USER_AGENT'] %>
+  IP: <%= @request.env['REMOTE_ADDR'] %>

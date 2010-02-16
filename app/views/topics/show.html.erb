@@ -63,6 +63,8 @@
   <%= I18n.t 'txt.count_voices', :count => @topic.voices.size, :num => number_with_delimiter(@topic.voices.size) %>
 </p>
 
+<p id="notification"></p>
+
 <% unless @posts.empty? -%>
 <%= will_paginate @posts %>
 
@@ -111,6 +113,14 @@
       </span>
     </p>
     <% end -%>
+    
+    <% if logged_in? %>
+    <p>
+      <span class="edit">
+        <%= link_to_remote I18n.t('txt.report_inappropriate_content', :default => 'Report inappropriate content'), {:url => report_post_path(post), :method => :put, :confirm => I18n.t('txt.report_inappropriate_content_confirm', :default => 'Are you sure to notify forum administrator about this post?'), :update => 'notification', :complete => visual_effect(:highlight, 'notification', :duration => 2)}, :class => 'utility' %>
+      </span>
+    </p>
+    <% end %>
 
 
   </td>

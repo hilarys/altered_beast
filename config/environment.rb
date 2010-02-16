@@ -74,3 +74,5 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :en
 
 end
+
+INAPPROPRIATE_CONTENT_EMAIL = 'admin@tripfriends.ru'

@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
     forum.resources :posts
   end
   
-  map.resources :posts
+  map.resources :posts, :member => { :report => :put }
   map.resources :users, :member => { :suspend   => :put,
                                      :settings  => :get,
                                      :make_admin => :put,

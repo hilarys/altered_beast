@@ -16,6 +16,11 @@ class PostsController < ApplicationController
       format.xml  { render :xml  => @posts }
     end
   end
+  
+  def report
+    post = Post.find params[:id]
+    PostMailer.deliver_report_notification(current_user, post, request)
+  end
 
   def show
     respond_to do |format|

@@ -338,6 +338,9 @@
       :your_new_password => "Ваш новый пароль!",
     
       :footer_message => "Двое - компания. Трое - форум. Больше трёх - Beast.",
+      
+      :report_inappropriate_content => "Сообщить о недопустимом содержании",
+      :report_inappropriate_content_confirm => 'Вы действительно хотите уведомить администратора об этом сообщении?',
              
       :admin => {
         :title => "Администрация",
