@@ -10,8 +10,8 @@ describe "/sites/show.html.erb" do
     assigns[:site] = @site
   end
 
-  it "should render attributes in <p>" do
-    render "/sites/show.html.erb"
-  end
+  # it "should render attributes in <p>" do
+  #   render "/sites/show.html.erb"
+  # end
 end
 
