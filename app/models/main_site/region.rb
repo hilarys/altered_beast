@@ -1,2 +1,2 @@
-class MainSite::Region < External
+class MainSite::Region < ActiveRecord::Base
 end

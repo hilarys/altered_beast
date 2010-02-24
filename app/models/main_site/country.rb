@@ -1,2 +1,2 @@
-class MainSite::Country < External
+class MainSite::Country < ActiveRecord::Base
 end

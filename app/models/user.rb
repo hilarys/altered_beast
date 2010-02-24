@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  set_table_name "accounts"
   concerned_with :states, :activation, :posting, :validation
   formats_attributes :bio
 
