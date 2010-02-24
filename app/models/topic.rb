@@ -74,8 +74,10 @@ class Topic < ActiveRecord::Base
     permalink
   end
   
-  def self.search(query, forum_id, options = {})
-    options[:conditions] ||= ["(LOWER(#{Post.table_name}.body) LIKE ? OR LOWER(#{Topic.table_name}.title) LIKE ?) AND #{Topic.table_name}.forum_id = ?", "%#{query}%", "%#{query}%", forum_id] unless query.blank?
+  def self.search(query, forum, options = {})
+    _forum = Forum.find_by_permalink forum
+    
+    options[:conditions] ||= ["(LOWER(#{Post.table_name}.body) LIKE ? OR LOWER(#{Topic.table_name}.title) LIKE ?) AND #{Topic.table_name}.forum_id = ?", "%#{query}%", "%#{query}%", _forum.id] unless query.blank?
     #options[:select]     ||= "#{Topic.table_name}.title AS topic_title, #{Topic.table_name}.id AS id, f.name AS forum_name, #{Topic.table_name}.forum_id AS f_id"
     options[:joins]      ||= "INNER JOIN #{Post.table_name} ON #{Post.table_name}.topic_id = #{Topic.table_name}.id " + 
                              "INNER JOIN #{Forum.table_name} AS f ON #{Topic.table_name}.forum_id = f.id"

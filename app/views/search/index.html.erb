@@ -8,7 +8,7 @@
 
 <% form_tag '/search' do -%>
   <%= label_tag "forum" %>
-  <%= select_tag "forum", options_for_select(@forums.map {|f| [f.name, f.id]}, params[:forum].to_i) %>
+  <%= select_tag "forum", options_for_select(@forums.map {|f| [f.name, f.permalink]}, params[:forum]) %>
   <%= text_field_tag :q, params[:q], :size => 15, :id => :search_box %>
   <%= submit_tag "Find" %>
 <% end -%>

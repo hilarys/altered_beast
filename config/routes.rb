@@ -2,6 +2,8 @@ ActionController::Routing::Routes.draw do |map|
   map.open_id_complete '/session', 
     :controller => "sessions", :action => "create",
     :requirements => { :method => :get }
+    
+  map.formatted_search '/search.:format', :controller => 'search', :action => 'index'
   map.search '/search', :controller => 'search', :action => 'index'
 
   map.resources :sites, :moderatorships, :monitorship
