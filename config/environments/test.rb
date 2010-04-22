@@ -23,3 +23,9 @@ config.action_mailer.delivery_method = :test
 
 config.gem 'rspec', :lib => 'spec', :version => "1.2.9"
 config.gem 'rspec-rails', :lib => 'spec/rails', :version => "1.2.9"
+
+config.action_controller.session = {
+  :domain => ".local.host", 
+  :key => 'tripfriends_session',
+  :secret => 'f471415647be47dc513d5e345ca4e582a8f99f388e0ccd46a2cdac51e2cd27c8e8b4d7dbba379cf661d4857afaf6b1867489bbc5e16b5fb14d2c3e53df64c272'
+}
