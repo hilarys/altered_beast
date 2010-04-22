@@ -2,6 +2,8 @@ require 'humane_integer'
 
  # Simple model to hold sets of questions and answers.
 class BrainBuster < ActiveRecord::Base
+  set_table_name "forum_brain_busters"
+  
   VERSION = "0.8.3"
 
   # Attempt to answer a captcha, returns true if the answer is correct.

@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  set_table_name "forum_posts"  
   include User::Editable
   
   formats_attributes :body

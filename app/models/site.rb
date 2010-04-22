@@ -1,4 +1,5 @@
 class Site < ActiveRecord::Base
+  set_table_name "forum_sites"  
   class UndefinedError < StandardError; end
 
   has_many :users, :conditions => {:state => 'active'}

@@ -1,4 +1,6 @@
 class Forum < ActiveRecord::Base
+  set_table_name "forum_forums"
+  
   formats_attributes :description
   
   acts_as_list

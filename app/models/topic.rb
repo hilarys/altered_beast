@@ -1,4 +1,5 @@
 class Topic < ActiveRecord::Base
+  set_table_name "forum_topics"  
   include User::Editable
 
   before_validation_on_create :set_default_attributes

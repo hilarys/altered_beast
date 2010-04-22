@@ -1,4 +1,6 @@
 class Monitorship < ActiveRecord::Base
+  set_table_name "forum_monitorships"
+    
   belongs_to :user
   belongs_to :topic
   

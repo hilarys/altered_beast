@@ -1,4 +1,6 @@
 class Moderatorship < ActiveRecord::Base
+  set_table_name "forum_moderatorships"
+    
   belongs_to :user
   belongs_to :forum
   validates_presence_of :user_id, :forum_id
