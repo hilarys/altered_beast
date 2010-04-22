@@ -26,6 +26,15 @@ config.action_view.cache_template_loading            = true
 # Enable threaded mode
 # config.threadsafe!
 
+config.action_controller.session = {
+  :domain => ".tripfriends.ru", 
+  :key => 'tripfriends_session',
+  :secret => 'f471415647be47dc513d5e345ca4e582a8f99f388e0ccd46a2cdac51e2cd27c8e8b4d7dbba379cf661d4857afaf6b1867489bbc5e16b5fb14d2c3e53df64c272'
+}
+
+#ActionController::Base.session_store = :active_record_store
+
+
 ActionMailer::Base.smtp_settings = {  
  :address        => "mail.authsmtp.com", 
  :port           => 23,  

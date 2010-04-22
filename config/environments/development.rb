@@ -25,4 +25,4 @@ config.action_controller.session = {
   :secret => 'f471415647be47dc513d5e345ca4e582a8f99f388e0ccd46a2cdac51e2cd27c8e8b4d7dbba379cf661d4857afaf6b1867489bbc5e16b5fb14d2c3e53df64c272'
 }
 
-ActionController::Base.session_store = :active_record_store
+#ActionController::Base.session_store = :active_record_store
